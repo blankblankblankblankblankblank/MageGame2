@@ -1,0 +1,194 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfe7urpb7trdf"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_6ffwu"]
+[ext_resource type="Script" path="res://scripts/Input.gd" id="2_votk2"]
+[ext_resource type="Texture2D" uid="uid://bsta733gke64t" path="res://Textures/hitmarker.png" id="4_xfj8n"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fauad"]
+properties/0/path = NodePath("PlayerInput:jumping")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("PlayerInput:direction")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("PlayerInput:cam_rot")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("PlayerInput:rot")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xybt3"]
+properties/0/path = NodePath(".:player")
+properties/0/spawn = true
+properties/0/replication_mode = 0
+properties/1/path = NodePath(".:hp")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pxv1d"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_732q6"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="SphereMesh" id="SphereMesh_t1gi6"]
+radius = 0.3
+height = 0.6
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+script = ExtResource("1_6ffwu")
+
+[node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_fauad")
+script = ExtResource("2_votk2")
+
+[node name="0" type="Timer" parent="PlayerInput"]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="1" type="Timer" parent="PlayerInput"]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="2" type="Timer" parent="PlayerInput"]
+wait_time = 0.35
+one_shot = true
+autostart = true
+
+[node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_xybt3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_pxv1d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00166893, 0.020731, 0.0416584)
+mesh = SubResource("CapsuleMesh_732q6")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -0.2)
+mesh = SubResource("SphereMesh_t1gi6")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -256)
+
+[node name="TextureRect" type="TextureRect" parent="Camera3D"]
+modulate = Color(1, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.785398
+pivot_offset = Vector2(32, 32)
+size_flags_horizontal = 4
+texture = ExtResource("4_xfj8n")
+expand_mode = 2
+
+[node name="HitMark" type="TextureRect" parent="Camera3D"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 32)
+size_flags_horizontal = 4
+texture = ExtResource("4_xfj8n")
+expand_mode = 2
+
+[node name="Marker3D" type="Marker3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -0.5)
+
+[node name="Marker3D2" type="Marker3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -0.7)
+
+[node name="HitTimer" type="Timer" parent="Camera3D"]
+wait_time = 0.3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -64.0
+offset_right = 256.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(256, 64)
+show_percentage = false
+
+[node name="Label" type="Label" parent="Control/ProgressBar"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 64.0
+
+[node name="speed" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 704.0
+offset_right = 960.0
+offset_bottom = 23.0
+scale = Vector2(2, 2)
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control/Control"]
+layout_mode = 0
+offset_left = 704.0
+offset_right = 1216.0
+offset_bottom = 75.0
+text = "Quit"
+
+[node name="ColorRect" type="ColorRect" parent="Control/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.329412)
+
+[connection signal="timeout" from="Camera3D/HitTimer" to="." method="_on_hit_timer_timeout"]

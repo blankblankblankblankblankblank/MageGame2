@@ -1,0 +1,5 @@
+CREDITS:
+TEXTURE:
+
+1 - kmd fury and knave (edited) - https://www.quaddicted.com/webarchive/kell.quaddicted.com/q1textures.html
+2 - kennys textures - godot addons
