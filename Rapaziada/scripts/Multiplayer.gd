@@ -12,7 +12,7 @@ func _ready():
 
 	# Automatically start the server in headless mode.
 	if DisplayServer.get_name() == "headless":
-		print("Automatically starting dedicated server.")
+		print("Automatically starting dedicated server! :D")
 		_on_host_pressed.call_deferred()
 
 
@@ -20,7 +20,7 @@ func _on_host_pressed():
 	# Start as server.
 	peer.create_server(PORT,16)
 	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
-		OS.alert("Failed to start multiplayer server.")
+		OS.alert("Failed to start multiplayer server D:")
 		return
 	multiplayer.multiplayer_peer = peer
 	start_game()
@@ -30,11 +30,11 @@ func _on_connect_pressed():
 	# Start as client.
 	var txt : String = $UI/LineEdit.text
 	if txt == "":
-		OS.alert("Need a remote to connect to.")
+		OS.alert("Need a remote to connect to >:(")
 		return
 	peer.create_client(txt, PORT)
 	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
-		OS.alert("Failed to start multiplayer client.")
+		OS.alert("Failed to start multiplayer client D;")
 		return
 	multiplayer.multiplayer_peer = peer
 	start_game()
@@ -45,7 +45,7 @@ func start_game():
 	$UI.hide()
 	get_tree().paused = false
 	if multiplayer.is_server():
-		change_level.call_deferred(load("res://scenes/level1.tscn"))
+		change_level.call_deferred(load("res://Scenes/level1.tscn"))
 
 
 # Call this function deferred and only on the main authority (server).
@@ -60,7 +60,7 @@ func change_level(scene: PackedScene):
 
 func disconnect_sv():
 	peer.close_connection()
-	get_tree().change_scene_to_packed(load('res://scenes/mult.tscn'))
+	get_tree().change_scene_to_packed(load('res://Scenes/multiplayer.tscn'))
 
 # The server can restart the level by pressing Home.
 func _input(event):

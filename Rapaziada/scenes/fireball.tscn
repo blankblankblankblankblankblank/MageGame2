@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://sv8cxet0kr5q"]
 
 [ext_resource type="Script" path="res://scripts/fireball.gd" id="1_x8lo0"]
-[ext_resource type="Material" uid="uid://b5wlmgc3663qd" path="res://scenes/fireball.tres" id="2_ervum"]
+[ext_resource type="Material" uid="uid://b5wlmgc3663qd" path="res://materials/fireball.tres" id="2_ervum"]
 [ext_resource type="Material" uid="uid://bffuvatfkil1x" path="res://materials/fireball_mat.tres" id="3_wfrt4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xujor"]

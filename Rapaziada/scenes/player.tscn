@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfe7urpb7trdf"]
+[gd_scene load_steps=11 format=3 uid="uid://dhbvrhfmpe4il"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_6ffwu"]
-[ext_resource type="Script" path="res://scripts/Input.gd" id="2_votk2"]
-[ext_resource type="Texture2D" uid="uid://bsta733gke64t" path="res://Textures/hitmarker.png" id="4_xfj8n"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_eeict"]
+[ext_resource type="Script" path="res://scripts/Input.gd" id="2_2nh7u"]
+[ext_resource type="Texture2D" uid="uid://bsta733gke64t" path="res://Textures/hitmarker.png" id="3_05iss"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fauad"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4m3ol"]
 properties/0/path = NodePath("PlayerInput:jumping")
 properties/0/spawn = true
 properties/0/replication_mode = 1
@@ -17,14 +17,17 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath("PlayerInput:rot")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+properties/4/path = NodePath("PlayerInput:arma")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xybt3"]
-properties/0/path = NodePath(".:player")
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qr80f"]
+properties/0/path = NodePath(".:hp")
 properties/0/spawn = true
-properties/0/replication_mode = 0
-properties/1/path = NodePath(".:hp")
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:player")
 properties/1/spawn = true
-properties/1/replication_mode = 2
+properties/1/replication_mode = 0
 properties/2/path = NodePath(".:position")
 properties/2/spawn = true
 properties/2/replication_mode = 1
@@ -32,60 +35,90 @@ properties/3/path = NodePath(".:rotation")
 properties/3/spawn = true
 properties/3/replication_mode = 1
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pxv1d"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cgus0"]
+radius = 0.8
+height = 3.0
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_732q6"]
-radius = 0.4
-height = 1.8
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g360a"]
+radius = 0.74
+height = 2.9
 
-[sub_resource type="SphereMesh" id="SphereMesh_t1gi6"]
-radius = 0.3
-height = 0.6
+[sub_resource type="SphereMesh" id="SphereMesh_0rw4s"]
 
-[node name="Player" type="CharacterBody3D" groups=["player"]]
-script = ExtResource("1_6ffwu")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fg7a4"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 44
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 44
+corner_detail = 3
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hufcn"]
+bg_color = Color(0.839216, 0, 0.0901961, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 64
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 64
+corner_detail = 3
+shadow_size = 2
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+wall_min_slide_angle = 0.802851
+floor_max_angle = 0.802851
+script = ExtResource("1_eeict")
 
 [node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_fauad")
-script = ExtResource("2_votk2")
+replication_config = SubResource("SceneReplicationConfig_4m3ol")
+script = ExtResource("2_2nh7u")
 
 [node name="0" type="Timer" parent="PlayerInput"]
 wait_time = 0.2
-one_shot = true
-autostart = true
 
 [node name="1" type="Timer" parent="PlayerInput"]
-wait_time = 0.5
-one_shot = true
-autostart = true
+wait_time = 0.4
 
 [node name="2" type="Timer" parent="PlayerInput"]
-wait_time = 0.35
-one_shot = true
-autostart = true
+wait_time = 0.3
 
-[node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_xybt3")
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_qr80f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_pxv1d")
+shape = SubResource("CapsuleShape3D_cgus0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00166893, 0.020731, 0.0416584)
-mesh = SubResource("CapsuleMesh_732q6")
+mesh = SubResource("CapsuleMesh_g360a")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -0.2)
-mesh = SubResource("SphereMesh_t1gi6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.1)
+mesh = SubResource("SphereMesh_0rw4s")
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -256)
+[node name="HitTimer" type="Timer" parent="Camera3D"]
 
-[node name="TextureRect" type="TextureRect" parent="Camera3D"]
+[node name="Hitmark" type="TextureRect" parent="Camera3D"]
+visible = false
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_05iss")
+
+[node name="Aim" type="TextureRect" parent="Camera3D"]
 modulate = Color(1, 0, 0, 1)
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -98,37 +131,9 @@ offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.785398
+scale = Vector2(0.4, 0.4)
 pivot_offset = Vector2(32, 32)
-size_flags_horizontal = 4
-texture = ExtResource("4_xfj8n")
-expand_mode = 2
-
-[node name="HitMark" type="TextureRect" parent="Camera3D"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(32, 32)
-size_flags_horizontal = 4
-texture = ExtResource("4_xfj8n")
-expand_mode = 2
-
-[node name="Marker3D" type="Marker3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -0.5)
-
-[node name="Marker3D2" type="Marker3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -0.7)
-
-[node name="HitTimer" type="Timer" parent="Camera3D"]
-wait_time = 0.3
+texture = ExtResource("3_05iss")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -145,50 +150,29 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -256.0
-offset_top = -64.0
-offset_right = 256.0
+offset_left = -117.0
+offset_top = -31.0
+offset_right = 118.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
-pivot_offset = Vector2(256, 64)
+theme_override_styles/background = SubResource("StyleBoxFlat_fg7a4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hufcn")
+max_value = 200.0
+value = 200.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="Control/ProgressBar"]
 layout_mode = 0
-offset_right = 512.0
-offset_bottom = 64.0
-
-[node name="speed" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 704.0
-offset_right = 960.0
-offset_bottom = 23.0
-scale = Vector2(2, 2)
+offset_right = 236.0
+offset_bottom = 27.0
+text = "200
+"
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Button" type="Button" parent="Control/Control"]
-layout_mode = 0
-offset_left = 704.0
-offset_right = 1216.0
-offset_bottom = 75.0
-text = "Quit"
-
-[node name="ColorRect" type="ColorRect" parent="Control/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.329412)
-
-[connection signal="timeout" from="Camera3D/HitTimer" to="." method="_on_hit_timer_timeout"]
+[node name="speed" type="Label" parent="Control"]
+offset_right = 1152.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 20
+text = "FAST AS FUCK BOII"
+horizontal_alignment = 1

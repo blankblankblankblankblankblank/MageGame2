@@ -9,7 +9,7 @@ var sense = 0.2;
 @export var arma = 0
 
 #the timers are numbered for the weaponds they represent
-#0 - ray
+#0 - raio
 #1 - fireball
 #2 - ice shotgun
 @onready var timers = [get_node('0'),get_node('1'),get_node('2')]
@@ -23,15 +23,15 @@ func jump():
 	jumping = true
 
 func _process(_delta):
-	if get_multiplayer_authority() == 1:
+	#if get_multiplayer_authority() == 1:
+		#direction = Input.get_vector("a", "d", "w", "s")
+		#if Input.is_action_just_pressed("ui_accept"):
+			#jump()
+		#if Input.is_action_just_pressed('MouseOne'):
+			#shoot()
+	#else:
 		direction = Input.get_vector("a", "d", "w", "s")
-		if Input.is_action_just_pressed("ui_accept"):
-			jump()
-		if Input.is_action_just_pressed('MouseOne'):
-			shoot()
-	else:
-		direction = Input.get_vector("a", "d", "w", "s")
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("jump"):
 			jump.rpc()
 		if Input.is_action_just_pressed('MouseOne'):
 			shoot.rpc()

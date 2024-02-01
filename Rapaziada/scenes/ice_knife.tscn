@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bbhwi8bnsufyc"]
 
-[ext_resource type="Script" path="res://scenes/IceKnife.gd" id="1_hv51l"]
+[ext_resource type="Script" path="res://scripts/IceKnife.gd" id="1_hv51l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yk8v1"]
 

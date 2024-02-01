@@ -38,7 +38,7 @@ func add_player(id: int):
 	var character = preload("res://scenes/player.tscn").instantiate()
 	# Set player id.
 	character.player = id
-	# Randomize character position.
+	#Randomize character position.
 	character.position = get_node(spawn_positions.pick_random()).global_position
 	character.name = str(id)
 	add_child(character, true)

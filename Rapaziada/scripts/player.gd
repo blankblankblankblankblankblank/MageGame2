@@ -11,6 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 #stats
 @export var hp = 200
+@export var Velocity : Vector3
 
 #ui
 @onready var progress = $Control/ProgressBar
@@ -59,38 +60,38 @@ func _physics_process(delta):
 	rotate_rpc.rpc(cam.rotation,rotation,get_path())
 	var direction = transform.basis * (Vector3(input.direction.x, 0, input.direction.y)).normalized()
 	if direction:
-		velocity = _accelerate(accel,direction,delta)
+		Velocity = _accelerate(accel,direction,delta)
 	
 	MAX_VEL = 18.0
 	if not is_on_floor():
 		MAX_VEL = 12.0
-		velocity.y -= gravity * delta
+		Velocity.y -= gravity * delta
 	else:
-		velocity = _friction(delta)
+		Velocity = _friction(delta)
 	if input.jumping and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		Velocity.y = JUMP_VELOCITY
 	input.jumping = false
-	
+	velocity = Velocity
 	move_and_slide()
 	speedl.text = str(snapped(Vector3(velocity.x,0,velocity.z).length(),0.01))
 	
 
 func _accelerate(accele : float, dir : Vector3, delta : float) -> Vector3:
-	var current_speed: float = velocity.dot(dir.normalized())
+	var current_speed: float = Velocity.dot(dir.normalized())
 	var add_speed: float = clamp(MAX_VEL - current_speed, 0, accele * 5 * delta)
-	return velocity + (dir * add_speed)
+	return Velocity + (dir * add_speed)
 
 
 func _friction(delta: float) -> Vector3:
-	var speed: float = velocity.length()
+	var speed: float = Velocity.length()
 	var scaled_velocity: Vector3
 	if speed != 0:
 		var drop = speed * friction * delta
-		scaled_velocity = velocity * max(speed - drop, 0) / speed
+		scaled_velocity = Velocity * max(speed - drop, 0) / speed
 	if speed < 2:
-		return velocity * 0.1
-	if (transform.basis * Vector3(input.direction.x, 0, input.direction.y)).normalized() == Vector3.ZERO:
-		return velocity * 0.888
+		return Velocity * 0.1
+	if (transform.basis * Vector3(input.direction.x, 0, input.direction.y)).normalized() == Vector3.ZERO and is_on_floor():
+		return Velocity * 0.888
 	return scaled_velocity
 
 @rpc("any_peer",'call_local')
