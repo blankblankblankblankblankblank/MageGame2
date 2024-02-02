@@ -1,6 +1,6 @@
 extends Area3D
 var dmg = 18
-var impulse = 45
+var impulse = 500
 
 @onready var coli = get_node('CollisionShape3D')
 @onready var mod1 = get_node('MeshInstance3D')
@@ -27,10 +27,9 @@ func _on_body_entered(hit):
 	if hit.is_in_group('player'):
 		var dist = position.distance_to(hit.position)
 		var dir = position.direction_to(hit.position)
-		if multiplayer.get_unique_id() == 1:
-			hit.velocity = dir * impulse
-			hit._accelerate(impulse,dir,1)
-			hit._on_hit.rpc_id( hit.get_multiplayer_authority(), max( dmg - dist*3 ,0) )
+		hit.velocity = dir * impulse
+		hit._accelerate(impulse,dir,1)
+		hit._on_hit.rpc_id( hit.get_multiplayer_authority(), max( dmg - dist*3 ,0) )
 
 func _on_animation_player_animation_finished(_anim_name):
 	coli.disabled = true

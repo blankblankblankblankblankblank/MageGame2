@@ -1,4 +1,4 @@
-extends RayCast3D
+extends ShapeCast3D
 var dmg := 25
 var time := 0.0
 
@@ -14,7 +14,7 @@ func _physics_process(delta):
 	mod.get_active_material(0).uv1_offset += Vector3(0.2,0.2,0.2)
 	scale = Vector3.ONE*interpolation.sample_baked(time*4.333)
 	if is_colliding():
-		var hit = get_collider()
+		var hit = get_collider(0)
 		if hit.is_in_group('player'):
 			if hit.player != father:
 				if multiplayer.get_unique_id() == 1:

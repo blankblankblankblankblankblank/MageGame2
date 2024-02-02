@@ -56,11 +56,18 @@ theme = ExtResource("2_vie4u")
 text = "Join Game"
 
 [node name="LineEdit" type="LineEdit" parent="UI"]
-layout_mode = 0
-offset_left = 459.0
-offset_top = 199.0
-offset_right = 693.0
-offset_bottom = 284.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -125.0
+offset_right = 117.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("2_vie4u")
 placeholder_text = "Ip addres"
 alignment = 1

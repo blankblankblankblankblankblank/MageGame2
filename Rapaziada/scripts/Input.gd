@@ -24,17 +24,17 @@ func jump():
 
 func _process(_delta):
 	#if get_multiplayer_authority() == 1:
-		#direction = Input.get_vector("a", "d", "w", "s")
-		#if Input.is_action_just_pressed("ui_accept"):
-			#jump()
-		#if Input.is_action_just_pressed('MouseOne'):
-			#shoot()
-	#else:
 		direction = Input.get_vector("a", "d", "w", "s")
-		if Input.is_action_just_pressed("jump"):
-			jump.rpc()
+		if Input.is_action_just_pressed("ui_accept"):
+			jump()
 		if Input.is_action_just_pressed('MouseOne'):
-			shoot.rpc()
+			shoot()
+	#else:
+		#direction = Input.get_vector("a", "d", "w", "s")
+		#if Input.is_action_just_pressed("jump"):
+			#jump.rpc()
+		#if Input.is_action_just_pressed('MouseOne'):
+			#shoot.rpc()
 
 @rpc('call_remote')
 func shoot():

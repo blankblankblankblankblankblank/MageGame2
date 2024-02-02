@@ -21,9 +21,9 @@ func _ready():
 	# Spawn already connected players.
 	for id in multiplayer.get_peers():
 		add_player(id)
-
+	
 	# Spawn the local player unless this is a dedicated server export.
-	if not OS.has_feature("dedicated_server"):
+	if !DisplayServer.get_name() == "headless" and multiplayer.is_server():
 		add_player(1)
 	
 
@@ -35,13 +35,14 @@ func _exit_tree():
 
 
 func add_player(id: int):
-	var character = preload("res://scenes/player.tscn").instantiate()
+	var character = load("res://scenes/player.tscn").instantiate()
 	# Set player id.
 	character.player = id
 	#Randomize character position.
 	character.position = get_node(spawn_positions.pick_random()).global_position
 	character.name = str(id)
 	add_child(character, true)
+	character.player = id
 
 func del_player(id: int):
 	var player = get_node_or_null(str(id))

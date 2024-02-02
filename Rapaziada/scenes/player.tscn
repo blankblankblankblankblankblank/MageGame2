@@ -21,19 +21,16 @@ properties/4/path = NodePath("PlayerInput:arma")
 properties/4/spawn = true
 properties/4/replication_mode = 1
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qr80f"]
-properties/0/path = NodePath(".:hp")
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ygbjr"]
+properties/0/path = NodePath("..:Velocity")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath(".:player")
+properties/1/path = NodePath("..:hp")
 properties/1/spawn = true
-properties/1/replication_mode = 0
-properties/2/path = NodePath(".:position")
+properties/1/replication_mode = 1
+properties/2/path = NodePath("..:position")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath(".:rotation")
-properties/3/spawn = true
-properties/3/replication_mode = 1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cgus0"]
 radius = 0.8
@@ -64,26 +61,33 @@ corner_radius_bottom_left = 64
 corner_detail = 3
 shadow_size = 2
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["player"]]
 wall_min_slide_angle = 0.802851
 floor_max_angle = 0.802851
 script = ExtResource("1_eeict")
 
 [node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.016
+delta_interval = 0.016
 replication_config = SubResource("SceneReplicationConfig_4m3ol")
 script = ExtResource("2_2nh7u")
 
 [node name="0" type="Timer" parent="PlayerInput"]
 wait_time = 0.2
+one_shot = true
 
 [node name="1" type="Timer" parent="PlayerInput"]
 wait_time = 0.4
+one_shot = true
 
 [node name="2" type="Timer" parent="PlayerInput"]
 wait_time = 0.3
+one_shot = true
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_qr80f")
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="PlayerInput"]
+replication_interval = 0.016
+delta_interval = 0.016
+replication_config = SubResource("SceneReplicationConfig_ygbjr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_cgus0")
@@ -100,7 +104,7 @@ mesh = SubResource("SphereMesh_0rw4s")
 
 [node name="HitTimer" type="Timer" parent="Camera3D"]
 
-[node name="Hitmark" type="TextureRect" parent="Camera3D"]
+[node name="HitMark" type="TextureRect" parent="Camera3D"]
 visible = false
 texture_filter = 1
 anchors_preset = 8
@@ -134,6 +138,12 @@ rotation = 0.785398
 scale = Vector2(0.4, 0.4)
 pivot_offset = Vector2(32, 32)
 texture = ExtResource("3_05iss")
+
+[node name="Marker3D" type="Marker3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, -0.7)
+
+[node name="Marker3D2" type="Marker3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -0.9)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -171,8 +181,11 @@ text = "200
 horizontal_alignment = 1
 
 [node name="speed" type="Label" parent="Control"]
-offset_right = 1152.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
 offset_bottom = 28.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 20
 text = "FAST AS FUCK BOII"
 horizontal_alignment = 1

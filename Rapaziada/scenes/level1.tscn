@@ -1,31 +1,36 @@
-[gd_scene load_steps=604 format=3 uid="uid://cj0l37mpwi5j7"]
+[gd_scene load_steps=605 format=3 uid="uid://cj0l37mpwi5j7"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_oqy3u"]
 [ext_resource type="Sky" uid="uid://b7l18omelk11c" path="res://rainysky.tres" id="3_em48y"]
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="4_o3owm"]
 [ext_resource type="Resource" uid="uid://c36hv0o6g0udo" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="5_0fade"]
-[ext_resource type="Texture2D" uid="uid://nb4y86qych6r" path="res://textures/kbrick0.jpg" id="5_ig105"]
-[ext_resource type="Texture2D" uid="uid://cmb47ieon7f28" path="res://textures/grass.png" id="6_fs0mt"]
-[ext_resource type="Texture2D" uid="uid://djatysio1a7od" path="res://textures/pvdrksep.jpg" id="7_83mpx"]
-[ext_resource type="Texture2D" uid="uid://tbgkg57kjxhc" path="res://textures/wstn1.jpg" id="8_d1jn1"]
-[ext_resource type="Texture2D" uid="uid://bgf5kt1v3qnua" path="res://textures/tube.png" id="9_eyixn"]
-[ext_resource type="Texture2D" uid="uid://eeefshtnhifp" path="res://textures/wood.png" id="10_7kv6i"]
-[ext_resource type="Texture2D" uid="uid://7b1fktadsjmn" path="res://textures/shelf_128b.jpg" id="11_4ciig"]
-[ext_resource type="Texture2D" uid="uid://de5paek650uov" path="res://textures/wdcor0.png" id="12_5wgnm"]
-[ext_resource type="Texture2D" uid="uid://dxrlml5xk2nru" path="res://textures/wdf1.jpg" id="13_f8e3i"]
-[ext_resource type="Texture2D" uid="uid://cy40cgdxfa27k" path="res://textures/gbrk4_2.jpg" id="14_4nvg6"]
-[ext_resource type="Texture2D" uid="uid://ds3ml3hny0egy" path="res://textures/fstna_2.jpg" id="15_fwrv7"]
-[ext_resource type="Texture2D" uid="uid://lls8meb7heob" path="res://textures/city2_gray.jpg" id="16_i4nc4"]
-[ext_resource type="Texture2D" uid="uid://80f7gswbguvc" path="res://textures/pvsepred.jpg" id="17_genja"]
-[ext_resource type="Texture2D" uid="uid://6n16qbsmd6wx" path="res://textures/kstn_snd.jpg" id="18_sjtc8"]
-[ext_resource type="Texture2D" uid="uid://f6m4qtgheb20" path="res://textures/pvredazu.jpg" id="19_50wki"]
+[ext_resource type="Texture2D" uid="uid://nb4y86qych6r" path="res://Textures/kbrick0.jpg" id="5_ig105"]
+[ext_resource type="Texture2D" uid="uid://cmb47ieon7f28" path="res://Textures/grass.png" id="6_fs0mt"]
+[ext_resource type="Texture2D" uid="uid://djatysio1a7od" path="res://Textures/pvdrksep.jpg" id="7_83mpx"]
+[ext_resource type="Texture2D" uid="uid://tbgkg57kjxhc" path="res://Textures/wstn1.jpg" id="8_d1jn1"]
+[ext_resource type="Texture2D" uid="uid://bgf5kt1v3qnua" path="res://Textures/tube.png" id="9_eyixn"]
+[ext_resource type="Texture2D" uid="uid://eeefshtnhifp" path="res://Textures/wood.png" id="10_7kv6i"]
+[ext_resource type="Texture2D" uid="uid://7b1fktadsjmn" path="res://Textures/shelf_128b.jpg" id="11_4ciig"]
+[ext_resource type="Texture2D" uid="uid://de5paek650uov" path="res://Textures/wdcor0.png" id="12_5wgnm"]
+[ext_resource type="Texture2D" uid="uid://dxrlml5xk2nru" path="res://Textures/wdf1.jpg" id="13_f8e3i"]
+[ext_resource type="Texture2D" uid="uid://cy40cgdxfa27k" path="res://Textures/gbrk4_2.jpg" id="14_4nvg6"]
+[ext_resource type="Texture2D" uid="uid://ds3ml3hny0egy" path="res://Textures/fstna_2.jpg" id="15_fwrv7"]
+[ext_resource type="Texture2D" uid="uid://lls8meb7heob" path="res://Textures/city2_gray.jpg" id="16_i4nc4"]
+[ext_resource type="Texture2D" uid="uid://80f7gswbguvc" path="res://Textures/pvsepred.jpg" id="17_genja"]
+[ext_resource type="Texture2D" uid="uid://6n16qbsmd6wx" path="res://Textures/kstn_snd.jpg" id="18_sjtc8"]
+[ext_resource type="Texture2D" uid="uid://f6m4qtgheb20" path="res://Textures/pvredazu.jpg" id="19_50wki"]
 [ext_resource type="Material" uid="uid://d1sm6fd2jib5r" path="res://materials/explosion_mat1.tres" id="19_x11g3"]
-[ext_resource type="Texture2D" uid="uid://cbnn4bcshlwu" path="res://textures/checkeredwindow.jpg" id="20_cd3i7"]
-[ext_resource type="Texture2D" uid="uid://k4hy4fewrcxy" path="res://textures/mosaicwindow.png" id="21_c5u5q"]
-[ext_resource type="Texture2D" uid="uid://crvcv80yausvi" path="res://textures/bluewindow.jpg" id="22_jvnit"]
-[ext_resource type="Texture2D" uid="uid://cr2irv8v3sc1a" path="res://textures/rb6464ssr.jpg" id="23_4thls"]
-[ext_resource type="Texture2D" uid="uid://w0my77ctp5l0" path="res://textures/wdcors.jpg" id="24_37apk"]
-[ext_resource type="Texture2D" uid="uid://cw42mi41rtspa" path="res://textures/shelf_2.jpg" id="25_hiapk"]
+[ext_resource type="Texture2D" uid="uid://cbnn4bcshlwu" path="res://Textures/checkeredwindow.jpg" id="20_cd3i7"]
+[ext_resource type="Texture2D" uid="uid://k4hy4fewrcxy" path="res://Textures/mosaicwindow.png" id="21_c5u5q"]
+[ext_resource type="Texture2D" uid="uid://crvcv80yausvi" path="res://Textures/bluewindow.jpg" id="22_jvnit"]
+[ext_resource type="Texture2D" uid="uid://cr2irv8v3sc1a" path="res://Textures/rb6464ssr.jpg" id="23_4thls"]
+[ext_resource type="Texture2D" uid="uid://w0my77ctp5l0" path="res://Textures/wdcors.jpg" id="24_37apk"]
+[ext_resource type="Texture2D" uid="uid://cw42mi41rtspa" path="res://Textures/shelf_2.jpg" id="25_hiapk"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ay61t"]
+properties/0/path = NodePath(".:spawn_positions")
+properties/0/spawn = true
+properties/0/replication_mode = 0
 
 [sub_resource type="Environment" id="Environment_j1po1"]
 background_mode = 2
@@ -2205,6 +2210,7 @@ _spawnable_scenes = PackedStringArray("res://scenes/player.tscn", "res://scenes/
 spawn_path = NodePath("..")
 
 [node name="WorldSync" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ay61t")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j1po1")
@@ -3927,7 +3933,7 @@ omni_range = 13.5
 omni_attenuation = 0.420448
 
 [node name="stairlight2" type="OmniLight3D" parent="Elements/Lights"]
-transform = Transform3D(-6.99382e-08, 0, 1.6, 0, 1.6, 0, -1.6, 0, -6.99382e-08, -27.1545, 16.98, -128.56)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27.1545, 16.98, -128.56)
 light_color = Color(1, 0.858824, 0.835294, 1)
 light_energy = 1.5
 light_bake_mode = 1
@@ -3981,31 +3987,43 @@ light_bake_mode = 1
 omni_range = 16.0
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Elements/Lights"]
-transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -71.0875, -35.129, 28.977)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.0875, -35.129, 28.977)
 light_color = Color(0, 0.564706, 1, 1)
 light_energy = 16.0
+light_size = 0.4
+light_specular = 1.0
 light_bake_mode = 1
-omni_range = 28.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 22.9
 omni_attenuation = 0.292411
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="Elements/Lights"]
-transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -28.8334, -35.129, -30.9314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.8334, -35.129, -30.9314)
 light_color = Color(0, 0.564706, 1, 1)
 light_energy = 16.0
+light_size = 0.4
+light_specular = 1.0
 light_bake_mode = 1
-omni_range = 28.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 22.9
 omni_attenuation = 0.292411
 
 [node name="OmniLight3D5" type="OmniLight3D" parent="Elements/Lights"]
-transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 14.6313, -35.129, 25.8491)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6313, -35.129, 25.8491)
 light_color = Color(0, 0.564706, 1, 1)
 light_energy = 16.0
+light_size = 0.4
+light_specular = 1.0
 light_bake_mode = 1
-omni_range = 28.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 22.9
 omni_attenuation = 0.292411
 
 [node name="fireballLight" type="OmniLight3D" parent="Elements/Lights"]
-transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 0, 101.746, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 101.746, 0)
 light_color = Color(1, 0.376471, 0, 1)
 light_energy = 16.0
 light_indirect_energy = 8.0

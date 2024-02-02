@@ -2,7 +2,9 @@ extends CharacterBody3D
 
 #vars
 const JUMP_VELOCITY = 12.0
-var MAX_VEL = 18.0
+var BASVEL = 18.0
+const MAXVEL = 22.0
+const MINVEL = 18.0
 var accel := 24.0
 var friction := 3.0
 
@@ -35,7 +37,7 @@ func _ready():
 		cam.visible = true
 		$Control.show()
 		# Give authority over the player input to the appropriate peer.
-		$PlayerInput.set_multiplayer_authority(player)
+		input.set_multiplayer_authority(name.to_int())
 		# Only process on server.
 		# EDIT: Let the client simulate player movement too to compesate network input latency.
 		#set_physics_process(multiplayer.is_server())
@@ -62,9 +64,9 @@ func _physics_process(delta):
 	if direction:
 		Velocity = _accelerate(accel,direction,delta)
 	
-	MAX_VEL = 18.0
-	if not is_on_floor():
-		MAX_VEL = 12.0
+	BASVEL = MINVEL
+	if !is_on_floor():
+		BASVEL = MAXVEL
 		Velocity.y -= gravity * delta
 	else:
 		Velocity = _friction(delta)
@@ -78,7 +80,7 @@ func _physics_process(delta):
 
 func _accelerate(accele : float, dir : Vector3, delta : float) -> Vector3:
 	var current_speed: float = Velocity.dot(dir.normalized())
-	var add_speed: float = clamp(MAX_VEL - current_speed, 0, accele * 5 * delta)
+	var add_speed: float = clamp(BASVEL - current_speed, 0, accele * 5 * delta)
 	return Velocity + (dir * add_speed)
 
 

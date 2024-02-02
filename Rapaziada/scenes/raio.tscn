@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://btbxcy7o57dq6"]
+[gd_scene load_steps=10 format=3 uid="uid://btbxcy7o57dq6"]
 
 [ext_resource type="Script" path="res://scripts/raio.gd" id="1_frqm3"]
 [ext_resource type="Texture2D" uid="uid://dj7gpvb5m3hh5" path="res://Textures/trovão.png" id="2_pg3vm"]
 [ext_resource type="Material" uid="uid://b83336ql3pu4v" path="res://materials/raio_mat.tres" id="3_ijcrx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bjtvo"]
+size = Vector3(0.12, 0.12, 1000)
 
 [sub_resource type="Curve" id="Curve_j7unc"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.892361, 0.430605), -1.69333, -1.69333, 0, 0, Vector2(1, 0), -8.59348, 0.0, 0, 0]
@@ -46,9 +49,9 @@ properties/1/path = NodePath(".:position")
 properties/1/spawn = true
 properties/1/replication_mode = 0
 
-[node name="raio" type="RayCast3D"]
+[node name="raio" type="ShapeCast3D"]
+shape = SubResource("BoxShape3D_bjtvo")
 target_position = Vector3(0, 0, -500)
-debug_shape_thickness = 3
 script = ExtResource("1_frqm3")
 interpolation = SubResource("Curve_j7unc")
 
